@@ -23,3 +23,18 @@ export async function PATCH(request, { params }) {
     headers: { "Content-Type": "application/json" },
   });
 }
+
+export async function DELETE(_, { params }) {
+  //If the request object is unnecessary for your use case, you can skip it but keep the context as the second parameter
+  const { id } = await params;
+  console.log(id);
+
+  const index = comments.findIndex((comment) => comment.id === parseInt(id));
+
+  const deletedComment = comments[index];
+  comments.splice(index, 1);
+
+  return new Response(JSON.stringify(deletedComment), {
+    headers: { "Content-Type": "application/json" },
+  });
+}
