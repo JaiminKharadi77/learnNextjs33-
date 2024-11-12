@@ -1,7 +1,15 @@
 import { comments } from "./data";
 
-export async function GET() {
-  return new Response(JSON.stringify(comments), {
+export async function GET(request) {
+  const searchParams = request.nextUrl.searchParams;
+
+  const query = searchParams.get("query");
+
+  const filteredComments = query
+    ? comments.filter((comment) => comment.text.includes(query))
+    : comments;
+
+  return new Response(JSON.stringify(filteredComments), {
     headers: { "Content-Type": "application/json" },
   });
 }
