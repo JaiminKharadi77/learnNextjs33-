@@ -1,10 +1,14 @@
 import { comments } from "../data";
+import { redirect } from "next/navigation";
 
 export async function GET(_request, { params }) {
   const { id } = await params; // Awaiting params to avoid sync access error
   const comment =
     comments.find((comment) => comment.id === parseInt(id)) ||
     "Specific id is not found";
+
+  if (comment === "Specific id is not found") redirect("/comments"); // will direct to comments route
+
   return new Response(JSON.stringify(comment), {
     headers: { "Content-Type": "application/json" },
   });
