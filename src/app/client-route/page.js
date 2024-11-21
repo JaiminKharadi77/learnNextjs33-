@@ -1,13 +1,31 @@
 "use client";
 
-import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import { serverSideFunction } from "@/utils/server-utils";
+// import "./ImageSlider.css";
 
-function ClientRoute() {
-  console.log(serverSideFunction());
-
-  return <div>This is Client Route</div>;
+export default function ClientRoutePage() {
+  return (
+    <>
+      <h1>Server Route</h1>
+      <div className="image-slider-container">
+        <Slider>
+          <div>
+            <img src="https://picsum.photos/400/200" alt="placeholder" />
+          </div>
+          <div>
+            <img src="https://picsum.photos/400/300" alt="placeholder" />
+          </div>
+          <div>
+            <img src="https://picsum.photos/400/250" alt="placeholder" />
+          </div>
+          <div>
+            <img src="https://picsum.photos/400/350" alt="placeholder" />
+          </div>
+        </Slider>
+      </div>
+    </>
+  );
 }
-
-export default ClientRoute;

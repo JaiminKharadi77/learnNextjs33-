@@ -1,7 +1,13 @@
-import React from "react";
+import { ImageSlider } from "@/components/image-slider";
+import { serverSideFunction } from "@/utils/server-utils";
 
-function ServerRoute() {
-  return <div>This is Server Route</div>;
+export default function ServerRoutePage() {
+  const result = serverSideFunction();
+  return (
+    <>
+      <h1>Server Route</h1>
+      <p>{result}</p>
+      <ImageSlider />
+    </>
+  );
 }
-
-export default ServerRoute;
